@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>大米的信</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="config.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div id="bgLayer" aria-hidden="true"></div>
+  <main id="board" aria-label="祝福便签"></main>
+  <div id="intro" role="dialog" aria-modal="true" aria-labelledby="intro-title">
+    <section class="intro-box">
+      <h1 id="intro-title"></h1>
+      <div class="intro-content"><p id="intro-message"></p><button id="start" type="button" autofocus>打开</button></div>
+    </section>
+  </div>
+  <button id="music-toggle" type="button" hidden>播放音乐</button>
+  <audio id="music" loop preload="none"></audio>
+</body>
+</html>

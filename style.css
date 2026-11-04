@@ -1,0 +1,48 @@
+
+		*{box-sizing:border-box;margin:0;padding:0}
+		body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background-image:linear-gradient(0deg,#eee 1px,transparent 0),linear-gradient(90deg,#eee 1px,transparent 0);background-size:30px 30px;color:#333;min-height:100dvh;overflow:hidden}
+		body.has-maximized-card{overflow:hidden}
+		body.is-mobile{overflow-y:auto}
+		#bgLayer{position:fixed;inset:0;z-index:0;background:center center / cover no-repeat;pointer-events:none}
+		#board{position:relative;width:100vw;height:100dvh;overflow:hidden}
+		body.is-mobile #board{height:auto;min-height:100dvh}
+		.card{position:absolute;width:260px;border-radius:12px;box-shadow:0 16px 35px rgba(0,0,0,.2);background:#fff;border:1px solid rgba(0,0,0,.08);overflow:hidden;opacity:0;transform-origin:center;transition:transform .35s ease,opacity .35s ease,left .35s ease,top .35s ease,width .35s ease,height .35s ease,border-radius .35s ease}
+		.card.dragging{transition:none;box-shadow:0 22px 45px rgba(0,0,0,.35)}
+		.card.maximized{position:fixed;inset:0;width:100vw;height:100vh;height:100dvh;border-radius:0;box-shadow:0 28px 60px rgba(0,0,0,.4)}
+		.card-header{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:rgba(255,255,255,.7);cursor:grab;user-select:none;touch-action:pan-y}
+		.card-header.dragging{cursor:grabbing}
+		.window-controls{display:flex;align-items:center;gap:6px}
+		.window-controls .control{position:relative;width:12px;height:12px;border-radius:50%;border:1px solid rgba(0,0,0,.08);background:#ccc;cursor:pointer;outline:0;padding:0;display:inline-flex;align-items:center;justify-content:center}
+		.window-controls .control.close{background:#ff5f57;border-color:#e0443e}
+		.window-controls .control.minimize{background:#febb2e;border-color:#dea123}
+		.window-controls .control.maximize{background:#28c840;border-color:#1aab2c}
+		.window-controls .control::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0;transition:opacity .2s ease}
+		.card-header:hover .window-controls .control::after{opacity:.8}
+		.window-controls .control.close::after{content:'×';width:auto;height:auto;background:0 0;font-size:10px;line-height:1;font-weight:700;color:rgba(0,0,0,.7)}
+		.window-controls .control.minimize::after{width:6px;height:2px;background:rgba(0,0,0,.6)}
+		.window-controls .control.maximize::after{width:6px;height:6px;background:linear-gradient(45deg,rgba(0,0,0,.6) 0,rgba(0,0,0,.6) 45%,transparent 45%,transparent 55%,rgba(0,0,0,.6) 55%,rgba(0,0,0,.6) 100%)}
+		.card-title{font-size:14px;font-weight:600;color:rgba(0,0,0,.55);padding-left:10px;flex:1}
+		.card-body{padding:18px;font-size:18px;line-height:1.4;font-weight:600;color:rgba(0,0,0,.72);word-break:break-word;overflow-wrap:anywhere;white-space:normal}
+		.card.maximized{display:flex;flex-direction:column}
+		.card.maximized .card-title{display:none}
+		.card.maximized .card-body{flex:1;display:flex;align-items:center;justify-content:center;width:100%;height:100%;text-align:center;padding:clamp(32px,min(10vw,10vh),128px);padding-top:clamp(72px,min(14vw,14vh),192px);font-size:clamp(48px,min(18vw,18vh),200px);line-height:1.05}
+		@media (max-width:768px){
+			.card{width:220px;border-radius:10px}
+			.card-header{padding:10px 12px}
+			.card-body{padding:16px;font-size:16px}
+			.card-title{font-size:13px}
+		}
+	
+/* 独立版启动弹窗与音乐按钮 */
+body {background-color:#f6f6f6;}
+#bgLayer {opacity:var(--background-opacity,1);}
+#intro {position:fixed;inset:0;background:rgba(0,0,0,.45);display:grid;place-items:center;z-index:2000000;}
+#intro[hidden] {display:none;}
+.intro-box {width:min(90vw,380px);background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 16px 48px #0003;}
+.intro-box h1 {padding:18px 22px;background:var(--accent,#ff87b8);color:white;font-size:20px;}
+.intro-content {padding:28px 24px;text-align:center;}
+.intro-content p {line-height:1.7;white-space:pre-line;}
+#start {margin-top:22px;padding:12px;width:100%;border:0;border-radius:8px;background:var(--accent,#ff87b8);color:white;font-size:16px;cursor:pointer;}
+#music-toggle {position:fixed;right:16px;bottom:16px;z-index:1000010;border:1px solid #fff9;border-radius:24px;padding:10px 16px;background:#ffffffdd;cursor:pointer;}
+.control:focus-visible,#start:focus-visible,#music-toggle:focus-visible {outline:3px solid #6554c0;outline-offset:3px;}
+@media (prefers-reduced-motion:reduce) {.card {transition:none;}}
